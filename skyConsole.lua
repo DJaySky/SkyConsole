@@ -8,13 +8,11 @@ features (that are different from normal terminal):
 	-support for easier colors than normal cmd
 	
 list of commands:
-	-run - runs the specified exe, bat, or lua file
 	-pack [luaFile] [outName] - packs a lua file into a windows executable
 
-	-info - displays information about the console
+	-time - displays time
 
 potential commands:
-	-time - displays time
 
 
 non-command functionality
@@ -27,7 +25,7 @@ function showInfo()
 	io.write([[
 #######################################################
 # SkyConsole 0.1 (alpha) | Copyright (C) 2024 DJaySky #
-# GitHub repo: [link to gh repo]                      #
+# GitHub repo: https://github.com/DJaySky/SkyConsole  #
 #######################################################
 	]])
 end
@@ -60,9 +58,11 @@ mk -f name[.type] - Creates a new file of type [.type]. Adding -f  creates a fol
 rm [file] - Deletes a file
 
 run - Runs the specified exe, bat, or lua file
-pack [luaFile] [outName] - Packs a lua file into a Windows executable, which is named outName
+pack [luaFile] [appName] - Packs a lua file into a Windows executable, which is named appName
 
-For more advanced descriptions of commands and their parameters, see [gh docs link].
+time - Displays the current time
+
+For more advanced descriptions of commands and their parameters, see https://github.com/DJaySky/SkyConsole?tab=readme-ov-file#documentation.
 		]])
 	elseif(input == "clear") then
 		os.execute("cls")
@@ -114,7 +114,6 @@ For more advanced descriptions of commands and their parameters, see [gh docs li
 		if(type == "exe" or type == "bat") then
 			os.execute("start "..name.."."..type)
 		elseif(type == "lua") then
-			--use the "start src/lua" command to run the lua file
 			os.execute("start src/lua "..name..".lua")
 		else
 			if(checkFile(name..".".."exe") or checkFile(name..".".."bat")) then
@@ -126,6 +125,16 @@ For more advanced descriptions of commands and their parameters, see [gh docs li
 			end
 		end
 	elseif(string.sub(input, 1, 4) == "pack") then
+		if(string.find(input, ".lua") ~= nil) then
+			local luaFile = string.sub(input, 6, string.find(input, ".lua") + 3)
+			local appName = string.sub(input, string.find(input, ".lua") + 4)
+
+			os.execute("start src/rtc -o "..appName..".exe "..luaFile)
+		else
+			io.write("A .lua extension is required for Lua source files.\n")
+		end
+	elseif(input == "time") then
+		os.execute("time /t")
 	elseif(input ~= "") then
 		io.write("\""..input.."\" is not a valid command.")
 	end

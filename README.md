@@ -28,6 +28,7 @@ Commands will **only** execute when typed exactly as shown in the table.
 | rm [file]   | Deletes file at [file]                                                             |
 | run [file]  | Runs the specified exe, bat, or <br> lua file at [file]                            |
 | pack        | Packs a lua file into an exe file, <br> using [rtc](https://github.com/samyeyo/rtc)|
+| time        | Displays the current time                                                          |
 
 ### Advanced Commands
 **mk -f [name].[type]:**
@@ -44,14 +45,17 @@ Creates a new file. The `mk` command will not work without parameters.
 
 **run [file].[type]:**  
 >**Description**  
-Runs the specified exe, bat, or lua file. If no file extension is specified, the command searches for exe files, bat files, and lua files with the name `file`, in that order. This means that exe files have priority over all other runnable file types.  
+Runs the specified exe, bat, or lua file. If no file extension is specified, the command searches for exe files, bat files, and lua files with the name `file`, in that order. Exe files and bat files have higher priority in the search than lua files. This means that if you have an exe and a lua file with the same name, the exe file will run.  
 ><br>**Parameters**  
 `file`: The name of the file to be ran  
 `type`: The type of the file to be ran. See the command's description for additional information on file types 
 
-**pack:**  
+**pack [luaFile] [appName]:**  
 >**Description**  
 Packs a lua file into an exe file, using rtc.  
+><br>**Parameters**  
+`luaFile`: The .lua file to pack, written as `[name].lua`  
+`appname`: The name and path of the exe that the `luaFile` will be packed into  
 ><br>**Notes**  
 This command does **not** require rtc to be installed and exposed to the path, as it comes with the app's installation.
 
