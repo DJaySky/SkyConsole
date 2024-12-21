@@ -1,27 +1,11 @@
---SkyConsole Version 0.1
+--SkyConsole Version 1.0
 --Created by DJaySky
-
---[[
-features (that are different from normal terminal):
-	-supports running of lua files
-	-has a built in text editor? (make a seperate exe)
-	-support for easier colors than normal cmd
-	
-list of commands:
-
-potential commands:
-
-
-non-command functionality
-	-typing the name of a lua file runs said file
-	-typing the name+extension of a bat/exe file runs said file
-]]
 
 --- Displays information about the console
 function showInfo()
 	io.write([[
 #######################################################
-# SkyConsole 0.1 (alpha) | Copyright (C) 2024 DJaySky #
+# SkyConsole 1.0 | Copyright (C) 2024 DJaySky         #
 # GitHub repo: https://github.com/DJaySky/SkyConsole  #
 #######################################################
 	]])
@@ -79,8 +63,6 @@ For more advanced descriptions of commands and their parameters, see https://git
 			os.execute("cd")
 		else
 			io.write("Changing paths is not supported by this version.\n")
-			--[[os.execute("cd "..afterCd)
-			os.execute("cd")]]
 		end
 	
 	elseif(string.sub(input, 1,2) == "mk") then
