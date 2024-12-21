@@ -56,8 +56,11 @@ Packs a lua file into an exe file, using rtc.
 ><br>**Parameters**  
 `luaFile`: The .lua file to pack, written as `[name].lua`  
 `appname`: The name and path of the exe that the `luaFile` will be packed into  
+><br>**Example**  
+`"pack main.lua test"` - creates a `test.exe` file compiled from `main.lua`  
 ><br>**Notes**  
-This command does **not** require rtc to be installed and exposed to the path, as it comes with the app's installation.
+-This command does **not** require rtc to be installed and exposed to the path, as it comes with the app's installation.  
+-You are **required** to include the .lua extension in the source file's name, otherwise the command will not work
 
 ## Links
 - [Lua](https://lua.org/about.html)
