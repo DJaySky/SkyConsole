@@ -15,7 +15,9 @@ This is the recommended way to install SkyConsole. Just head over to the [link]r
 To build SkyConsole, open a terminal, navigate to the folder where you extracted the source code, and run `start src/rtc -s skyConsole.lua`. This will output a `skyConsole.exe` file in the same directory as the lua script. You can also use the wrtc.exe file that comes with rtc to customize the installation. If you move the SkyConsole.exe file, however, you need to make sure that you move the /src folder with it.
 
 ## Documentation:
-Commands will **only** execute when typed exactly as shown in the table.
+Commands will **only** execute when typed exactly as shown in the table.  
+
+Typing the name of an exe, bat, or lua file **with** the file extension will run that file. This only works for files in the current directory.
 | **Command** | **Description**                                                                    |
 | ----------- | ---------------------------------------------------------------------------------- |
 | help        | Displays a help menu displaying <br> all other commands                            |

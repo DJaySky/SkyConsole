@@ -8,9 +8,6 @@ features (that are different from normal terminal):
 	-support for easier colors than normal cmd
 	
 list of commands:
-	-pack [luaFile] [outName] - packs a lua file into a windows executable
-
-	-time - displays time
 
 potential commands:
 
@@ -43,6 +40,8 @@ end
 
 --- Parses and runs input
 function  handleInput(input)
+	local endString = string.sub(input, -3)
+
 	if(string.sub(input, 1, 4) == "help") then
 		io.write([[
 
@@ -135,6 +134,30 @@ For more advanced descriptions of commands and their parameters, see https://git
 		end
 	elseif(input == "time") then
 		os.execute("time /t")
+	--if the end of the command is bat, exe or lua, run the file
+	elseif(endString=="exe" or endString=="bat" or endString=="lua") then
+		local type = string.sub(input, -3)
+		local name = nil
+
+		if(string.find(input, "%.") == nil) then
+			name = input
+		else
+			name = string.sub(input, 1, string.find(input, "%.") -1)
+		end
+
+		if(type == "exe" or type == "bat") then
+			os.execute("start "..name.."."..type)
+		elseif(type == "lua") then
+			os.execute("start src/lua "..name..".lua")
+		else
+			if(checkFile(name..".".."exe") or checkFile(name..".".."bat")) then
+				os.execute("start "..name)
+			elseif(checkFile(name..".".."lua")) then
+				os.execute("start src/lua "..name..".lua")
+			else
+				io.write("File not found.\n")
+			end
+		end
 	elseif(input ~= "") then
 		io.write("\""..input.."\" is not a valid command.")
 	end
