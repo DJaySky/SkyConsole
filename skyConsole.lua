@@ -1,3 +1,6 @@
+--SkyConsole Version 0.1
+--Created by DJaySky
+
 --[[
 features (that are different from normal terminal):
 	-supports running of lua files
@@ -27,6 +30,17 @@ function showInfo()
 # GitHub repo: [link to gh repo]                      #
 #######################################################
 	]])
+end
+
+--- Checks if a file exists
+function checkFile(name)
+	local file = io.open(name, "r")
+	if(file ~= nil) then
+		io.close(file)
+		return true
+	else
+		return false
+	end
 end
 
 --- Parses and runs input
@@ -87,8 +101,31 @@ For more advanced descriptions of commands and their parameters, see [gh docs li
 			os.execute("del"..string.sub(input, 3))
 		end
 
-	--run and pack are next, but those are harder to do (for lua)
+	elseif(string.sub(input, 1, 3) == "run") then
+		local type = string.sub(input, -3)
+		local name = nil
 
+		if(string.find(input, "%.") == nil) then
+			name = string.sub(input, 5)
+		else
+			name = string.sub(input, 5, string.find(input, "%.") -1)
+		end
+
+		if(type == "exe" or type == "bat") then
+			os.execute("start "..name.."."..type)
+		elseif(type == "lua") then
+			--use the "start src/lua" command to run the lua file
+			os.execute("start src/lua "..name..".lua")
+		else
+			if(checkFile(name..".".."exe") or checkFile(name..".".."bat")) then
+				os.execute("start "..name)
+			elseif(checkFile(name..".".."lua")) then
+				os.execute("start src/lua "..name..".lua")
+			else
+				io.write("File not found.\n")
+			end
+		end
+	elseif(string.sub(input, 1, 4) == "pack") then
 	elseif(input ~= "") then
 		io.write("\""..input.."\" is not a valid command.")
 	end
@@ -104,7 +141,6 @@ io.write("\n\n")
 
 --- Whether or not to keep running the main loop
 continue = true
-
 
 while(continue) do
 	local input = nil
