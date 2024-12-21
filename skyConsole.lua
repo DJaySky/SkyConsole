@@ -22,6 +22,8 @@ non-command functionality
 	-typing the name+extension of a bat/exe file runs said file
 ]]
 
+--test
+
 --- Displays information about the console
 function showInfo()
 	io.write([[
