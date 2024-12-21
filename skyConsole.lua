@@ -5,9 +5,6 @@ features (that are different from normal terminal):
 	-support for easier colors than normal cmd
 	
 list of commands:
-	-mk -f name[.type] - creates a new file of type [.type]. -f  creates a folder
-	-rm - deletes a file
-
 	-run - runs the specified exe, bat, or lua file
 	-pack [luaFile] [outName] - packs a lua file into a windows executable
 
@@ -21,8 +18,6 @@ non-command functionality
 	-typing the name of a lua file runs said file
 	-typing the name+extension of a bat/exe file runs said file
 ]]
-
---test
 
 --- Displays information about the console
 function showInfo()
@@ -92,7 +87,7 @@ For more advanced descriptions of commands and their parameters, see [gh docs li
 			os.execute("del"..string.sub(input, 3))
 		end
 
-	--run and pack are next, but those are harder to do
+	--run and pack are next, but those are harder to do (for lua)
 
 	elseif(input ~= "") then
 		io.write("\""..input.."\" is not a valid command.")
