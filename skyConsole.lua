@@ -95,12 +95,12 @@ For more advanced descriptions of commands and their parameters, see https://git
 		if(type == "exe" or type == "bat") then
 			os.execute("start "..name.."."..type)
 		elseif(type == "lua") then
-			os.execute("start src/lua "..name..".lua")
+			os.execute("start src\\lua "..name..".lua")
 		else
 			if(checkFile(name..".".."exe") or checkFile(name..".".."bat")) then
 				os.execute("start "..name)
 			elseif(checkFile(name..".".."lua")) then
-				os.execute("start src/lua "..name..".lua")
+				os.execute("start src\\lua "..name..".lua")
 			else
 				io.write("File not found.\n")
 			end
@@ -110,7 +110,7 @@ For more advanced descriptions of commands and their parameters, see https://git
 			local luaFile = string.sub(input, 6, string.find(input, ".lua") + 3)
 			local appName = string.sub(input, string.find(input, ".lua") + 4)
 
-			os.execute("start src/rtc -o "..appName..".exe "..luaFile)
+			os.execute("start src\\rtc -o "..appName..".exe "..luaFile)
 		else
 			io.write("A .lua extension is required for Lua source files.\n")
 		end
@@ -130,12 +130,12 @@ For more advanced descriptions of commands and their parameters, see https://git
 		if(type == "exe" or type == "bat") then
 			os.execute("start "..name.."."..type)
 		elseif(type == "lua") then
-			os.execute("start src/lua "..name..".lua")
+			os.execute("start src\\lua "..name..".lua")
 		else
 			if(checkFile(name..".".."exe") or checkFile(name..".".."bat")) then
 				os.execute("start "..name)
 			elseif(checkFile(name..".".."lua")) then
-				os.execute("start src/lua "..name..".lua")
+				os.execute("start src\\lua "..name..".lua")
 			else
 				io.write("File not found.\n")
 			end
